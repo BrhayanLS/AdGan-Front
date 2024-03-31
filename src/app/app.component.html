@@ -11,9 +11,13 @@
               Ganaderos
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Todos los Ganaderos</a></li>
+              <li><a class="dropdown-item" routerLink="allOwners" [ngClass]="{active: menuOption == 'allOwners'}"
+                (click)="onOption('allOwners')">Todos los Ganaderos</a>
+              </li>
               <!--<li><a class="dropdown-item" href="#">Ganadero por ID</a></li>-->
-              <li><a class="dropdown-item" href="#">Ganaderos</a></li>
+              <li><a class="dropdown-item" routerLink="owners" [ngClass]="{active: menuOption == 'owners'}"
+                (click)="onOption('owners')">Ganaderos</a>
+              </li>
             </ul>
           </li>
           <li class="nav-item dropdown">
@@ -31,8 +35,12 @@
               <li><a class="dropdown-item" routerLink="resume" [ngClass]="{active: menuOption == 'resume'}"
                 (click)="onOption('resume')">Resumen de ganado</a>
               </li>
-              <li><a class="dropdown-item" href="#">Ganado Vendido</a></li>
-              <li><a class="dropdown-item" href="#">Muertes de Ganado</a></li>
+              <li><a class="dropdown-item" routerLink="sold" [ngClass]="{active: menuOption == 'sold'}"
+                (click)="onOption('sold')">Ganado Vendido</a>
+              </li>
+              <li><a class="dropdown-item" routerLink="notAvailable" [ngClass]="{active: menuOption == 'notAvailable'}"
+                (click)="onOption('notAvailable')">Ganado No Disponible</a>
+              </li>
             </ul>
           </li>
           <li class="nav-item dropdown">

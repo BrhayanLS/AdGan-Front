@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAllCattle } from '../models/cattle.model';
-import { IResumeCattle } from '../models/cattleResume.model';
+import { IAllCattle, IResumeCattle, ISoldCattle } from '../models/cattle.model';
+import { IAllOwner } from '../models/owner.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,27 @@ export class ApiService {
 
   getResume(): Observable<IResumeCattle[]> {
     return this._http.get<IResumeCattle[]>(`${this.baseUrl}cattle/resume`);
+  }
+
+  getSold(): Observable<ISoldCattle[]> {
+    return this._http.get<ISoldCattle[]>(`${this.baseUrl}cattle/sold`);
+  }
+
+  getNotAvailable(): Observable<IAllCattle[]> {
+    return this._http.get<IAllCattle[]>(`${this.baseUrl}cattle/dead`);
+  }
+
+  //Owners
+
+  getAllOwners(): Observable<IAllOwner[]> {
+    return this._http.get<IAllOwner[]>(`${this.baseUrl}owner/all`);
+  }
+
+  getOwner(id: number): Observable<IAllOwner> {
+    return this._http.get<IAllOwner>(`${this.baseUrl}owner/${id}`);
+  }
+
+  getOwners(): Observable<IAllOwner[]> {
+    return this._http.get<IAllOwner[]>(`${this.baseUrl}owner`);
   }
 }

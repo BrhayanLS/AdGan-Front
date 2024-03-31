@@ -11,21 +11,22 @@
               <th scope="col">Id</th>
               <th scope="col">Nombre</th>
               <th scope="col">Edad</th>
-              <th scope="col">Estado</th>
+              <th scope="col">Fecha Venta</th>
               <th scope="col">Dueño</th>
-              <th scope="col">Contacto</th>
+              <th scope="col">Peso</th>
+              <th scope="col">Total$</th>
             </tr>
           </thead>
           <tbody>
               @for (cattle of listCattles; track $index) {
                   <tr>
-                  <th scope="row">{{ cattle.idCattle }}</th>
-                  <td>{{ cattle.nombre }}</td>
-                  <td>{{ cattle.edad }}</td>
-                  <td>{{ cattle.estado }}</td>
-                  <td>{{ cattle.nombreOwner }}</td>
-                  <td>{{ cattle.contacto }}</td>
-                  <td><button type="button" class="btn btn-outline-primary" (click)="navegate(cattle.idCattle)">Details</button></td>
+                    <th scope="row">{{ cattle.idCattle }}</th>
+                    <td>{{ cattle.nombre }}</td>
+                    <td>{{ cattle.edad }}</td>
+                    <td>{{ cattle.fechaVenta }}</td>
+                    <td>{{ cattle.owner }}</td>
+                    <td>{{ cattle.peso }}</td>
+                    <td>{{ cattle.totalNeto | currency: '' : 'symbol' : '3.0-0' }}</td>
                   </tr>
               }
           </tbody>

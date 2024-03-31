@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { IAllCattle } from '../../../models/cattle.model';
 import { ApiService } from '../../../services/api.service';
 import { Router } from '@angular/router';
+import { LoadingComponent } from '../../../loading/loading.component';
 
 @Component({
   selector: 'app-all-cattle',
   standalone: true,
-  imports: [],
+  imports: [LoadingComponent],
   templateUrl: './all-cattle.component.html',
   styleUrl: './all-cattle.component.css'
 })

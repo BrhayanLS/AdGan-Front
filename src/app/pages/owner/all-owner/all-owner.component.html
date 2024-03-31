@@ -1,0 +1,43 @@
+@if (loading) {
+    <app-loading/>
+}
+
+@if (!loading) {
+    <section class="section">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Contacto</th>
+                    <th scope="col">Rol</th>
+                  </tr>
+                </thead>
+               <tbody>
+                   @for (owner of listOwners; track $index) {
+                       <tr>
+                        <th scope="row">{{ owner.idOwner }}</th>
+                        <td>@if (owner?.estado) {Activo} @else {Inactivo}</td>
+                        <td>{{ owner.nombre }}</td>
+                        <td>{{ owner.apellido }}</td>
+                        <td>{{ owner.username }}</td>
+                        <td>{{ owner.correo }}</td>
+                        <td>{{ owner.contacto }}</td>
+                        <td>
+                            @for (role of owner.roles; track $index) {
+                                {{ role.name }}
+                            }
+                        </td>
+                        <td><button type="button" class="btn btn-outline-primary" (click)="navegate(owner.idOwner)">Details</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}

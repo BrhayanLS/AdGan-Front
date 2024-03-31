@@ -1,0 +1,55 @@
+@if (loading) {
+    <app-loading/>
+}
+
+@if (!loading) {
+    <section class="section">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Fecha Venta</th>
+                    <th scope="col">Precio/Kilo</th>
+                    <th scope="col">Valor Camion</th>
+                    <th scope="col">Valor Bascula</th>
+                  </tr>
+                </thead>
+               <tbody>
+                    <tr>
+                        <th scope="row">{{ listSale?.idSale }}</th>
+                        <td>{{ listSale?.fechaVenta }}</td>
+                        <td>{{ listSale?.precioKilo | currency: '' : 'symbol' : '3.0-0' }}</td>
+                        <td>{{ listSale?.valorCamion | currency: '' : 'symbol' : '3.0-0' }}</td>
+                        <td>{{ listSale?.valorBascula | currency: '' : 'symbol' : '3.0-0' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <h5><b>Detalle de la venta: </b></h5>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="row">Id</th>
+                        <th>Id Animal</th>
+                        <th>Peso</th>
+                        <th>Total</th>
+                        <th>Total Neto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (sale of listSale?.saleCattles; track $index) {
+                        <tr>
+                            <th>{{ sale.idSaleCattle }}</th>
+                            <td>{{ sale.cattleId }}</td>
+                            <td>{{ sale.peso }}</td>
+                            <td>{{ sale.total | currency: '' : 'symbol' : '3.0-0' }}</td>
+                            <td>{{ sale.totalNeto | currency: '' : 'symbol' : '3.0-0' }}</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}

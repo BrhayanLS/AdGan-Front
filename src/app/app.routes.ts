@@ -9,6 +9,9 @@ import { NotAvailableComponent } from './pages/cattle/not-available/not-availabl
 import { AllOwnerComponent } from './pages/owner/all-owner/all-owner.component';
 import { OwnerDetailComponent } from './pages/owner/owner-detail/owner-detail.component';
 import { OwnersComponent } from './pages/owner/owners/owners.component';
+import { AllSaleComponent } from './pages/sale/all-sale/all-sale.component';
+import { SaleDetailComponent } from './pages/sale/sale-detail/sale-detail.component';
+import { SalesComponent } from './pages/sale/sales/sales.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -23,5 +26,10 @@ export const routes: Routes = [
     //Owners
     {path: 'allOwners', component: AllOwnerComponent},
     {path: 'owner/:id', component: OwnerDetailComponent},
-    {path: 'owners', component: OwnersComponent}
+    {path: 'owners', component: OwnersComponent},
+
+    //Sales
+    {path: 'allSales', component: AllSaleComponent},
+    {path: 'sale/:id', component: SaleDetailComponent},
+    {path: 'sales', component: SalesComponent}
 ];

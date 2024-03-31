@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IAllCattle, IResumeCattle, ISoldCattle } from '../models/cattle.model';
 import { IAllOwner } from '../models/owner.model';
+import { IAllSale } from '../models/sale.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +51,19 @@ export class ApiService {
 
   getOwners(): Observable<IAllOwner[]> {
     return this._http.get<IAllOwner[]>(`${this.baseUrl}owner`);
+  }
+
+  //Sales
+
+  getAllSales(): Observable<IAllSale[]> {
+    return this._http.get<IAllSale[]>(`${this.baseUrl}sale/all`);
+  }
+
+  getSale(id: number): Observable<IAllSale> {
+    return this._http.get<IAllSale>(`${this.baseUrl}sale/${id}`);
+  }
+
+  getSales(): Observable<IAllSale[]> {
+    return this._http.get<IAllSale[]>(`${this.baseUrl}sale/sales`);
   }
 }

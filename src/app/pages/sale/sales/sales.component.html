@@ -1,0 +1,33 @@
+@if (loading) {
+    <app-loading/>
+}
+
+@if (!loading) {
+    <section class="section">
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Fecha Venta</th>
+                    <th scope="col">Precio/Kilo</th>
+                    <th scope="col">Valor Camion</th>
+                    <th scope="col">Valor Bascula</th>
+                  </tr>
+                </thead>
+               <tbody>
+                   @for (sale of listSale; track $index) {
+                       <tr>
+                        <th scope="row">{{ sale.idSale }}</th>
+                        <td>{{ sale.fechaVenta }}</td>
+                        <td>{{ sale.precioKilo | currency: '' : 'symbol' : '3.0-0' }}</td>
+                        <td>{{ sale.valorCamion | currency: '' : 'symbol' : '3.0-0' }}</td>
+                        <td>{{ sale.valorBascula | currency: '' : 'symbol' : '3.0-0' }}</td>
+                        <td><button type="button" class="btn btn-outline-primary" (click)="navegate(sale.idSale)">Details</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+}

@@ -14,7 +14,6 @@
               <li><a class="dropdown-item" routerLink="allOwners" [ngClass]="{active: menuOption == 'allOwners'}"
                 (click)="onOption('allOwners')">Todos los Ganaderos</a>
               </li>
-              <!--<li><a class="dropdown-item" href="#">Ganadero por ID</a></li>-->
               <li><a class="dropdown-item" routerLink="owners" [ngClass]="{active: menuOption == 'owners'}"
                 (click)="onOption('owners')">Ganaderos</a>
               </li>
@@ -31,7 +30,6 @@
               <li><a class="dropdown-item" routerLink="cattles" [ngClass]="{active: menuOption == 'cattles'}"
                 (click)="onOption('cattles')">Ganado</a>
               </li>
-              <!--<li><a class="dropdown-item" href="#">Ganado por ID</a></li>-->
               <li><a class="dropdown-item" routerLink="resume" [ngClass]="{active: menuOption == 'resume'}"
                 (click)="onOption('resume')">Resumen de ganado</a>
               </li>
@@ -48,9 +46,12 @@
               Ventas
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Todas la Ventas</a></li>
-              <li><a class="dropdown-item" href="#">Ventas</a></li>
-              <!--<li><a class="dropdown-item" href="#">Ventas por ID</a></li>-->
+              <li><a class="dropdown-item" routerLink="allSales" [ngClass]="{active: menuOption == 'allSales'}"
+                (click)="onOption('allSales')">Todas la Ventas</a>
+              </li>
+              <li><a class="dropdown-item" routerLink="sales" [ngClass]="{active: menuOption == 'sales'}"
+                (click)="onOption('sales')">Ventas</a>
+              </li>
             </ul>
           </li>
         </ul>

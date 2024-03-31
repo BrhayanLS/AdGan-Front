@@ -1,0 +1,22 @@
+.header {
+    background: rgb(5, 37, 0);
+    background: linear-gradient(90deg, rgba(5, 37, 0, 1) 50%, rgba(23, 89, 14, 1) 100%);
+}
+
+.navbar a {
+    color: #fff;
+}
+
+.navbar a:hover,
+.nav-link.show {
+    color: #c3fcb6 !important;
+}
+
+.dropdown-menu a {
+    color: #000;
+    background: #c3fcb6;
+}
+
+.dropdown-menu a:hover {
+    background: #555;
+}

@@ -1,0 +1,188 @@
+<section class="slider_section">
+    <div id="carouselExampleCaptions" class="carousel slide banner-main">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="../../../assets/images/carrusel1.jpg" class="d-block w-100">
+          <div class="carousel-caption d-none d-md-block">
+              <div class="carousel-caption relative">
+                <h1>AdGan</h1>
+                <span>Creación de Usuarios</span>
+                <p>Registra usuarios con diferentes niveles de acceso basados en roles específicos</p>
+              </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/carrusel2.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="container">
+              <div class="carousel-caption relative">
+                <h1>AdGan</h1>
+                <span>Manejo de Animales</span>
+                <p>Registra y administra los animales bovinos de tu finca</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="../../../assets/images/carrusel3.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <div class="container">
+              <div class="carousel-caption relative">
+                <h1>AdGan</h1>
+                <span>Registro de Ventas</span>
+                <p>Registra las ventas de ganado y sus costos asociados para calcular las ganancias netas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</section>
+
+<div class="container-fluid info-bd">
+    <div class="row align-items-center">
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="info-bd-box">
+          <span>Tablas Principales:</span>
+          <ul>
+            <li><b>Cattle (Ganado):</b> Almacena datos básicos del ganado, como su identificación, estado, fecha de
+              nacimiento y propietario</li>
+            <li><b>Owner (Propietario):</b> Contiene información del propietario del ganado, como nombre, apellido,
+              contacto y credenciales</li>
+            <li><b>Sale (Venta):</b> Registra las ventas de ganado, incluyendo fecha y detalles financieros como
+              precio por kilo, báscula y camión</li>
+            <li><b>Sale_Cattle (Venta de Ganado):</b> Relaciona ventas individuales de ganado con registros de ganado
+              y venta.</li>
+            <li><b>Roles:</b> Define roles de usuario como ADMIN, USER e INVITED</li>
+            <li><b>Vistas:</b> Son consultas personalizadas que combinan datos de varias tablas de la base de datos,
+              simplificando el acceso a información específica</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div>
+          <figure><img src="../../../assets/images/BD AdGan.jpg" alt="img" /></figure>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container-fluid tecno">
+    <div class="row align-items-center text-center">
+      <div class="col">
+        <h4 class="title-tecno">Tecnologias Usadas</h4>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <img src="../../../assets/images/java.png" class="rounded float-start" alt="...">
+      </div>
+      <div class="col">
+        <img src="../../../assets/images/spring-boot.png" class="rounded float-end" alt="...">
+      </div>
+      <div class="col">
+        <img src="../../../assets/images/spring-data.png" class="rounded float-start" alt="...">
+      </div>
+      <div class="col">
+        <img src="../../../assets/images/spring-security.png" class="rounded float-end" alt="...">
+      </div>
+      <div class="col">
+        <img src="../../../assets/images/jwt.png" class="rounded float-end" alt="...">
+      </div>
+      <div class="col">
+        <img src="../../../assets/images/MySql.png" class="rounded float-start" alt="...">
+      </div>
+      <div class="col">
+        <img src="../../../assets/images/maven.png" class="rounded float-end" alt="...">
+      </div>
+    </div>
+</div>
+
+<div class="container-fluid security">
+    <div class="row align-items-center">
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div>
+          <figure><img src="../../../assets/images/Api.png" alt="img" /></figure>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12">
+        <div class="security-box">
+          <span>Autenticación y Autorización:</span>
+          <ul>
+            <li><b>Peticion:</b> Cuando envías una solicitud a la API, se verifica si tienes un "token" de sesión. Si
+              no lo tienes, se inicia sesión y se crea un nuevo token utilizando un sistema llamado JWT (JSON Web
+              Token)</li>
+            <li><b>Autorización:</b> Después de obtener el token, se verifica su validez y se determina qué acciones
+              puedes realizar según tu rol de usuario. Esta información está codificada dentro del token</li>
+            <li><b>Respuesta:</b> Si todo está bien, se procesa tu solicitud y se te devuelve una respuesta con la
+              información solicitada de la base de datos</li>
+            <li><b>Uso del token:</b> El token de acceso debe incluirse en todas tus solicitudes a la API después de
+              iniciar sesión. Este token es válido por un día y luego necesitarás iniciar sesión nuevamente</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="endpoint">
+    <div class="container">
+      <div class="tit-endpoint">
+        <h3>Lista de EndPoints</h3>
+        <p>A continuación se muestra una lista de todos los EndPoints disponibles en nuestra API, junto con una breve
+          descripción de su función y el nivel de acceso necesario para utilizarlos. Estos EndPoints permiten a los
+          usuarios interactuar con diferentes aspectos de la aplicación, como la gestión del ganado, las ventas y la
+          autenticación.</p>
+      </div>
+      <table class="table table-hover" id="table-endpoint">
+        <thead>
+          <tr>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">ADMIN</th>
+            <th scope="col">USER</th>
+            <th scope="col">INVITED</th>
+            <th scope="col">DESCRIPCIÓN</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  
+
+  <div class="container-fluid footer">
+  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-2 py-4 my-2 border-top footer">
+      <div class="col mb-6 d-flex align-items-center">
+        <p class="text-body-secondary m-0">Creado por Brhayan Lopez</p>
+      </div>    
+      <div class="col mb-6">
+        <h5>Contacto</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-4">
+            <a href="https://www.linkedin.com/in/brhayanls/" target="_blank" class="nav-link p-0 text-body-secondary">
+                <img class="img-icon" src="../../../assets/images/linkedin-icon.svg" />LinkedIn
+            </a>
+        </li>        
+          <li class="nav-item mb-2">
+            <a href="https://github.com/BrhayanLS" target="_blank" class="nav-link p-0 text-body-secondary">
+              <img class="img-icon" src="../../../assets/images/github-icon.svg" />GitHub</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>

@@ -1,0 +1,97 @@
+/*-----------------------------------------------------Carrusel-----------------------------------------------*/
+.banner-main {
+    position: relative;
+    font-family: poppins;
+}
+
+.banner-main .carousel-caption span {
+    font-weight: bold;
+    color: #1e8a0b;
+    text-transform: uppercase;
+    display: block;
+}
+
+.banner-main .carousel-caption h1 {
+    color: #f2feef;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.banner-main .carousel-caption p {
+    color: #f2feef;
+}
+
+@media (min-width: 1300px) {
+    .banner-main .carousel-caption h1 {font-size: 7em; line-height: 84px; padding-bottom: 20px;}
+    .banner-main .carousel-caption span {font-size: 4em; line-height: 60px; padding-bottom: 10px;}
+    .banner-main .carousel-caption p {font-size: 2.3em; line-height: 31px; padding: 6px 0px 50px 0px;}
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+    .banner-main .carousel-caption h1 {font-size: 4.2em; line-height: 50px; padding-bottom: 12px;}
+    .banner-main .carousel-caption span {font-size: 2.4em; line-height: 36px; padding-bottom: 6px;}
+    .banner-main .carousel-caption p {font-size: 1.38em; line-height: 18px; padding: 6px 0px 50px 0px;}
+}
+
+@media (min-width: 700px) and (max-width: 1000px) {
+    .banner-main .carousel-caption h1 {font-size: 2.94em; line-height: 30px; padding-bottom: 7px;}
+    .banner-main .carousel-caption span {font-size: 1.68em; line-height: 21px; padding-bottom: 3px;}
+    .banner-main .carousel-caption p {font-size: 0.96em; line-height: 11px; padding: 6px 0px 50px 0px;}
+}
+/*-----------------------------------------Info-BD------------------------------------------------------*/
+.info-bd, .security, footer {
+    background: #f2feef;
+}
+
+.info-bd-box span {
+    font-size: 2em;
+    font-weight: bold;
+    color: #1e8a0b;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+/*----------------------------------------Tecnologias--------------------------------------------------*/
+.tecno, .endpoint {
+    font-family: poppins;
+    background: rgb(5, 37, 0);
+    background: linear-gradient(90deg, rgba(5, 37, 0, 1) 50%, rgba(23, 89, 14, 1) 100%);
+    padding: 10px 0px;
+}
+
+.img-icon {
+    margin: 0 1em;
+}
+
+.title-tecno {
+    color: #e0ffd9;
+}
+/*----------------------------------------Table-Endpoints-------------------------------------------------*/
+.table {
+    text-align: center;
+    --bs-table-color: #fff;
+}
+
+.endpoint .tit-endpoint {
+    color: #f2feef;
+}
+
+#table-endpoint {
+    --bs-table-bg: transparent;
+    --bs-table-hover-color: #31d413;
+    border-style: dashed;
+}
+
+#table-endpoint>tr {
+    border: 1px dashed #f2feef;
+}
+
+.info {
+    text-align: left !important;
+}
+
+#table-endpoint > tbody > tr:nth-child(1) > td.info {
+    text-align: left;
+}

@@ -16,6 +16,7 @@
             <th scope="col">Apellido Dueño</th>
             <th scope="col">Correo</th>
             <th scope="col">Contacto</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -29,7 +30,11 @@
                 <td>{{ cattle.apellido }}</td>
                 <td>{{ cattle.correo }}</td>
                 <td>{{ cattle.contacto }}</td>
-                <td><button type="button" class="btn btn-outline-primary" (click)="navegate(cattle.idCattle)">Details</button></td>
+                <td>
+                  <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(cattle.idCattle)">Detalle</button>
+                  <button type="button" class="btn btn-outline-primary mx-1" (click)="navegate(cattle.idCattle)">Actualizar</button>
+                  <button type="button" class="btn btn-outline-danger mx-1" (click)="deleteCattle(cattle.idCattle)">Eliminar</button>
+                </td>
                 </tr>
             }
         </tbody>

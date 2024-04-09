@@ -54,8 +54,19 @@ export class ApiService {
       }
     });
   }
-  
 
+  deleteCattle(id: number): void {
+    this._http.delete(`${this.baseUrl}cattle/delete/${id}`).subscribe({
+      next: (response) => {
+        console.log("Registro eliminado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al eliminar el registro");
+      }
+    });
+  }
+  
+/*-----------------------------------------------------------------------------------------------*/
   //Owners
 
   getAllOwners(): Observable<IAllOwner[]> {
@@ -80,7 +91,19 @@ export class ApiService {
       }
     });
   }
+  
+  deleteOwner(id: number): void {
+    this._http.delete(`${this.baseUrl}owner/${id}`).subscribe({
+      next: (response) => {
+        console.log("Registro eliminado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al eliminar el registro");
+      }
+    });
+  }
 
+  /*---------------------------------------------------------------------------------------------*/
   //Sales
 
   getAllSales(): Observable<IAllSale[]> {
@@ -104,5 +127,16 @@ export class ApiService {
         console.log("Error al crear el registro");
       }
     })
+  }
+
+  deleteSale(id: number): void {
+    this._http.delete(`${this.baseUrl}sale/${id}`).subscribe({
+      next: (response) => {
+        console.log("Registro eliminado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al eliminar el registro");
+      }
+    });
   }
 }

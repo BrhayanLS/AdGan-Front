@@ -1,4 +1,9 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for mdo</button>
+@if (loading) {
+  <app-loading/>
+}
+
+@if (!loading) {
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for mdo</button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -38,12 +43,6 @@
     </div>
   </div>
 </div>
-
-@if (loading) {
-  <app-loading/>
-}
-
-@if (!loading) {
 <section class="section">
     <div class="container">
     <table class="table table-hover">
@@ -68,7 +67,9 @@
                 <td>{{ cattle.apellido }}</td>
                 <td>{{ cattle.correo }}</td>
                 <td>{{ cattle.contacto }}</td>
-                <td><button type="button" class="btn btn-outline-primary" (click)="navegate(cattle.idCattle)">Details</button></td>
+                <td>
+                  <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(cattle.idCattle)">Detalle</button>
+                </td>
                 </tr>
             }
         </tbody>

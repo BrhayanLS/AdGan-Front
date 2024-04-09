@@ -30,4 +30,10 @@ navegate(id: number): void {
   this._router.navigate(['cattle', id])
 }
 
+deleteCattle(id:number): void {
+  if(confirm('¿Estás seguro de eliminar este animal?')) {
+    this._apiService.deleteCattle(id);
+  }
+}
+
 }

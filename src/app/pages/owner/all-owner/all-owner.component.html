@@ -16,6 +16,7 @@
                     <th scope="col">Correo</th>
                     <th scope="col">Contacto</th>
                     <th scope="col">Rol</th>
+                    <th scope="col">Acciones</th>
                   </tr>
                 </thead>
                <tbody>
@@ -33,7 +34,11 @@
                                 {{ role.name }}
                             }
                         </td>
-                        <td><button type="button" class="btn btn-outline-primary" (click)="navegate(owner.idOwner)">Details</button></td>
+                        <td>
+                            <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(owner.idOwner)">Detalle</button>
+                            <button type="button" class="btn btn-outline-primary mx-1" (click)="navegate(owner.idOwner)">Actualizar</button>
+                            <button type="button" class="btn btn-outline-danger mx-1" (click)="deleteOwner(owner.idOwner)">Eliminar</button>
+                          </td>
                         </tr>
                     }
                 </tbody>

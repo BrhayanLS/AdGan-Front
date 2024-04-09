@@ -29,4 +29,10 @@ export class AllOwnerComponent implements OnInit {
   navegate(id: number): void {
     this._router.navigate(['owner',id]);
   }
+
+  deleteOwner(id:number): void {
+    if(confirm('¿Estás seguro del eliminar a este dueño?')) {
+      this._apiService.deleteOwner(id);
+    }
+  }
 }

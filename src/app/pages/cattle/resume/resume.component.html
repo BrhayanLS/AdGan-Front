@@ -25,7 +25,9 @@
                   <td>{{ cattle.estado }}</td>
                   <td>{{ cattle.nombreOwner }}</td>
                   <td>{{ cattle.contacto }}</td>
-                  <td><button type="button" class="btn btn-outline-primary" (click)="navegate(cattle.idCattle)">Details</button></td>
+                  <td>
+                    <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(cattle.idCattle)">Detalle</button>
+                  </td>
                   </tr>
               }
           </tbody>

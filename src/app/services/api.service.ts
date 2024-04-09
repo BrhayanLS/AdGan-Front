@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAllCattle, IResumeCattle, ISoldCattle } from '../models/cattle.model';
-import { IAllOwner } from '../models/owner.model';
-import { IAllSale } from '../models/sale.model';
+import { IAllCattle, ICattle, IResumeCattle, ISoldCattle } from '../models/cattle.model';
+import { IAllOwner, IOwner } from '../models/owner.model';
+import { IAllSale, ISale } from '../models/sale.model';
+import { IRoleList } from '../models/enum.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,22 @@ export class ApiService {
     return this._http.get<IAllCattle[]>(`${this.baseUrl}cattle/dead`);
   }
 
+  getRoles(): Observable<string[]> {
+    return this._http.get<string[]>(`${this.baseUrl}enums/roles`);
+  }
+
+  addCattle(cattle: ICattle): void {
+    this._http.post<ICattle>(`${this.baseUrl}cattle`, cattle).subscribe({
+      next: (response) => {
+        console.log("Registro creado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al crear el registro");
+      }
+    });
+  }
+  
+
   //Owners
 
   getAllOwners(): Observable<IAllOwner[]> {
@@ -53,6 +70,17 @@ export class ApiService {
     return this._http.get<IAllOwner[]>(`${this.baseUrl}owner`);
   }
 
+  addOwner(owner: IOwner): void {
+    this._http.post<IOwner>(`${this.baseUrl}owner/save`, owner).subscribe({
+      next: (response) => {
+        console.log("Registro creado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al crear el registro");
+      }
+    });
+  }
+
   //Sales
 
   getAllSales(): Observable<IAllSale[]> {
@@ -65,5 +93,16 @@ export class ApiService {
 
   getSales(): Observable<IAllSale[]> {
     return this._http.get<IAllSale[]>(`${this.baseUrl}sale/sales`);
+  }
+
+  addSales(sale: ISale): void {
+    this._http.post<ISale>(`${this.baseUrl}sale/save`, sale).subscribe({
+      next: (response) => {
+        console.log("Registro creado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al crear el registro");
+      }
+    })
   }
 }

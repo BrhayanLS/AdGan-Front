@@ -14,3 +14,14 @@ export interface Role {
     id:   number;
     name: null | string;
 }
+
+export interface IOwner {
+    apellido: string;
+    contacto: string;
+    correo:   string;
+    username: string;
+    nombre:   string;
+    password: string;
+    roles:    string[];
+}
+

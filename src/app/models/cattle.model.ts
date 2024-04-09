@@ -28,3 +28,8 @@ export interface ISoldCattle {
     idCattle:   number;
 }
 
+export interface ICattle {
+    nombre:          string;
+    fechaNacimiento: Date;
+    idOwner:         string;
+}

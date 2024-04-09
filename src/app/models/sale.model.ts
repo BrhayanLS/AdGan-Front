@@ -15,3 +15,16 @@ export interface SaleCattle {
     total:        number;
     cattleId:     number;
 }
+
+export interface ISale {
+    fechaVenta?:   Date;
+    precioKilo?:   number;
+    valorCamion?:  number;
+    valorBascula?: number;
+    saleCattles?:  SaveSaleCattle[];
+}
+
+export interface SaveSaleCattle {
+    cattleId: number;
+    peso:     number;
+}

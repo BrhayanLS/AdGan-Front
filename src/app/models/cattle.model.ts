@@ -1,5 +1,6 @@
 export interface IAllCattle {
     idCattle:        number;
+    idOwner:         number;
     apellido:        string;
     correo:          string;
     contacto:        string;
@@ -29,6 +30,7 @@ export interface ISoldCattle {
 }
 
 export interface ICattle {
+    idCattle?:       number;
     nombre:          string;
     fechaNacimiento: Date;
     idOwner:         string;

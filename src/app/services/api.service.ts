@@ -66,6 +66,17 @@ export class ApiService {
     });
   }
   
+  updateCattle(cattle: ICattle): void {
+    this._http.put<ICattle>(`${this.baseUrl}cattle/update`, cattle).subscribe({
+      next: (response) => {
+        console.log("Registro actualizado");
+      },
+      error: (error) => {
+        console.log("Error al actualizar");
+      }
+    });
+  }
+
 /*-----------------------------------------------------------------------------------------------*/
   //Owners
 
@@ -103,6 +114,17 @@ export class ApiService {
     });
   }
 
+  updateOwner(owner: IOwner): void {
+    this._http.put(`${this.baseUrl}owner`, owner).subscribe({
+      next: (response) => {
+        console.log("Registro actualizado");
+      },
+      error: (error) => {
+        console.log("Error al actualizar");
+      }
+    });
+  }
+
   /*---------------------------------------------------------------------------------------------*/
   //Sales
 
@@ -136,6 +158,17 @@ export class ApiService {
       },
       error: (error) => {
         console.log("Error al eliminar el registro");
+      }
+    });
+  }
+
+  updateSale(sale: ISale): void {
+    this._http.put(`${this.baseUrl}sale`, sale).subscribe({
+      next: (response) => {
+        console.log("Registro actualizado");
+      },
+      error: (error) => {
+        console.log("Error al actualizar");
       }
     });
   }

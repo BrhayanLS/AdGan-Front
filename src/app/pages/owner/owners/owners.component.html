@@ -1,13 +1,17 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getRoles()">Open modal for mdo</button>
+@if (loading) {
+    <app-loading/>
+}
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo ganadero</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+@if (!loading) {
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCattleModal" (click)="getRoles()">Open modal for mdo</button>
+  <div class="modal fade" id="addCattleModal" tabindex="-1" aria-labelledby="addCattleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addCattleModalLabel">Añadir nuevo ganado</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
         <form [formGroup]="ownerForm" class="row g-3 needs-Validation" novalidate (submit)="enviar($event)">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nombre</label>
@@ -69,12 +73,6 @@
     </div>
   </div>
 </div>
-
-@if (loading) {
-    <app-loading/>
-}
-
-@if (!loading) {
     <section class="section">
         <div class="container">
             <table class="table table-hover">
@@ -106,7 +104,7 @@
                         </td>
                         <td>
                           <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(owner.idOwner)">Detalle</button>
-                          <button type="button" class="btn btn-outline-primary mx-1" (click)="navegate(owner.idOwner)">Actualizar</button>
+                          <button type="button" class="btn btn-outline-primary mx-1" (click)="loadOwner(owner.idOwner)" (click)="getRoles()" data-bs-toggle="modal" data-bs-target="#updateOwnerModal">Actualizar</button>
                           <button type="button" class="btn btn-outline-danger mx-1" (click)="deleteOwner(owner.idOwner)">Eliminar</button>
                         </td>
                         </tr>
@@ -116,3 +114,73 @@
         </div>
     </section>
 }
+
+<div class="modal fade" id="updateOwnerModal" tabindex="-1" aria-labelledby="updateOwnerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="updateOwnerModalLabel">Actualizar datos del ganadero</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="ownerUpdateForm" class="row g-3 needs-Validation" novalidate (submit)="enviarUpdate($event)">
+          <div class="mb-3">
+            <label for="exampleFormControlInputU1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleFormControlInputU1" formControlName="nombre"
+            [ngClass]="{'is-invalid' : hasErrorsU('nombre', 'required') || hasErrorsU('nombre','minlength')}">
+            @if (hasErrorsU('nombre', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrorsU('nombre', 'minlength')) { <span class="text-danger">El nombre debe tener al menos 3 caracteres</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInputU2" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="exampleFormControlInputU2" formControlName="apellido"
+            [ngClass]="{'is-invalid' : hasErrorsU('apellido', 'required') || hasErrorsU('apellido','minlength')}">
+            @if (hasErrorsU('apellido', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrorsU('apellido', 'minlength')) { <span class="text-danger">La fecha debe tener al menos 10 caracteres</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInputU3" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="exampleFormControlInputU3" formControlName="correo"
+            [ngClass]="{'is-invalid' : hasErrorsU('correo', 'required') || hasErrorsU('correo','minlength') || hasErrorsU('email','email')}">
+            @if (hasErrorsU('correo', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrorsU('correo', 'minlength')) { <span class="text-danger">El id debe tener al menos 1 caracteres</span> }
+            @if (hasErrorsU('email', 'email')) { <span class="text-danger">Formato de correo invalido</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInputU4" class="form-label">Contacto</label>
+            <input type="number" class="form-control" id="exampleFormControlInputU4" formControlName="contacto"
+            [ngClass]="{'is-invalid' : hasErrorsU('contacto', 'required') || hasErrorsU('contacto','minlength')}">
+            @if (hasErrorsU('contacto', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrorsU('contacto', 'minlength')) { <span class="text-danger">El numero de contato debe tener al menos 10 caracteres</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInputU5" class="form-label">Username</label>
+            <input type="text" class="form-control" id="exampleFormControlInputU5" formControlName="username"
+            [ngClass]="{'is-invalid' : hasErrorsU('username', 'required') || hasErrorsU('username','minlength')}">
+            @if (hasErrorsU('username', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrorsU('username', 'minlength')) { <span class="text-danger">El username debe tener al menos 3 caracteres</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInputU6" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleFormControlInputU6" formControlName="password"
+            [ngClass]="{'is-invalid' : hasErrorsU('password', 'required') || hasErrorsU('password','minlength')}">
+            @if (hasErrorsU('password', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrorsU('password', 'minlength')) { <span class="text-danger">La contraseña debe tener al menos 8 caracteres</span> }
+          </div>
+          <div class="mb-3">
+          <label for="exampleFormControlInputU7" class="form-label" id="exampleFormControlInputU7">Seleccione un rol</label>
+          <select class="form-control" formControlName="roles" aria-label="Default select example">
+            @for (rol of enumRoles; track $index) {
+              <option value="{{ rol.roles }}">{{ rol.roles }}</option>
+            }
+          </select>
+          @if (hasErrorsU('role', 'required')) { <span class="text-danger">Selecciona un rol</span> }
+        </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,11 +17,12 @@ export interface SaleCattle {
 }
 
 export interface ISale {
-    fechaVenta?:   Date;
-    precioKilo?:   number;
-    valorCamion?:  number;
-    valorBascula?: number;
-    saleCattles?:  SaveSaleCattle[];
+    idSale?:       number,
+    fechaVenta:   Date;
+    precioKilo:   number;
+    valorCamion:  number;
+    valorBascula: number;
+    saleCattles:  SaveSaleCattle[];
 }
 
 export interface SaveSaleCattle {

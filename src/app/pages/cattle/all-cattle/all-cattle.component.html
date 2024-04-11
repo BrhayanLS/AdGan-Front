@@ -32,7 +32,7 @@
                 <td>{{ cattle.contacto }}</td>
                 <td>
                   <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(cattle.idCattle)">Detalle</button>
-                  <button type="button" class="btn btn-outline-primary mx-1" (click)="navegate(cattle.idCattle)">Actualizar</button>
+                  <button type="button" class="btn btn-outline-primary mx-1" (click)="loadCattle(cattle.idCattle)" data-bs-toggle="modal" data-bs-target="#exampleModal">Actualizar</button>
                   <button type="button" class="btn btn-outline-danger mx-1" (click)="deleteCattle(cattle.idCattle)">Eliminar</button>
                 </td>
                 </tr>
@@ -42,3 +42,42 @@
 </div>
 </section>
 }
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo animal</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="cattleForm" class="row g-3 needs-Validation" novalidate (submit)="enviar($event)">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="nombre"
+            [ngClass]="{'is-invalid' : hasErrors('nombre', 'required') || hasErrors('nombre','minlength')}">
+            @if (hasErrors('nombre', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrors('nombre', 'minlength')) { <span class="text-danger">El nombre debe tener al menos 3 caracteres</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput2" class="form-label">Fecha de nacimiento</label>
+            <input type="date" class="form-control" id="exampleFormControlInput2" formControlName="fechaNacimiento"
+            [ngClass]="{'is-invalid' : hasErrors('fechaNacimiento', 'required') || hasErrors('fechaNacimiento','minlength')}">
+            @if (hasErrors('fechaNacimiento', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrors('fechaNacimiento', 'minlength')) { <span class="text-danger">La fecha debe tener al menos 10 caracteres</span> }
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput3" class="form-label">Id Dueño</label>
+            <input type="number" class="form-control" id="exampleFormControlInput3" formControlName="idOwner"
+            [ngClass]="{'is-invalid' : hasErrors('idOwner', 'required') || hasErrors('idOwner','minlength')}">
+            @if (hasErrors('idOwner', 'required')) { <span class="text-danger">Complete el campo</span> }
+            @if (hasErrors('idOwner', 'minlength')) { <span class="text-danger">El id debe tener al menos 1 caracteres</span> }
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

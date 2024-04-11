@@ -3,9 +3,10 @@
 }
 
 @if (!loading) {
-<section class="section">
-  <div class="container">
-    <table class="table table-hover">
+  <section class="section-table">
+    <div class="container">
+      <h3>Listado de ventas</h3>
+        <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Id</th>
@@ -25,8 +26,7 @@
           <td>{{ sale.valorCamion | currency: '' : 'symbol' : '3.0-0' }}</td>
           <td>{{ sale.valorBascula | currency: '' : 'symbol' : '3.0-0' }}</td>
           <td>
-            <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(sale.idSale)">Detalle</button>
-          </td>
+            <img src="../../../../assets/icons/detalle.png" alt="Detalle" class="icon mx-1" (click)="navegate(sale.idSale)">
         </tr>
         }
       </tbody>

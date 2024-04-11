@@ -78,8 +78,9 @@
     </div>
 </div>
 
-<section class="section">
+<section class="section-table">
     <div class="container">
+      <h3>Listado de todas las ventas</h3>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -102,10 +103,10 @@
                     <td>{{ sale.valorCamion | currency: '' : 'symbol' : '3.0-0' }}</td>
                     <td>{{ sale.valorBascula | currency: '' : 'symbol' : '3.0-0' }}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(sale.idSale)">Detalle</button>
-                        <button type="button" class="btn btn-outline-primary mx-1" (click)="loadSale(sale.idSale)" data-bs-toggle="modal" data-bs-target="#updateSaleModal">Actualizar</button>
-                        <button type="button" class="btn btn-outline-danger mx-1" (click)="deleteSale(sale.idSale)">Eliminar</button>
-                    </td>
+                        <img src="../../../../assets/icons/detalle.png" alt="Detalle" class="icon mx-1" (click)="navegate(sale.idSale)">
+                        <img src="../../../../assets/icons/editar.png" alt="Actualizar" class="icon mx-1" (click)="loadSale(sale.idSale)" data-bs-toggle="modal" data-bs-target="#updateSaleModal">
+                        <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="deleteSale(sale.idSale)">
+                    </td> 
                 </tr>
                 }
             </tbody>

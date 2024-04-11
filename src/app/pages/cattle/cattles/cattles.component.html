@@ -43,9 +43,10 @@
     </div>
   </div>
 </div>
-<section class="section">
-    <div class="container">
-    <table class="table table-hover">
+<section class="section-table">
+  <div class="container">
+    <h3>Listado del ganado</h3>
+      <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">Id</th>
@@ -55,21 +56,22 @@
             <th scope="col">Apellido Dueño</th>
             <th scope="col">Correo</th>
             <th scope="col">Contacto</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
             @for (cattle of listCattles; track $index) {
                 <tr>
-                <th scope="row">{{ cattle.idCattle }}</th>
-                <td>{{ cattle.nombre }}</td>
-                <td>{{ cattle.fechaNacimiento }}</td>
-                <td>{{ cattle.nombreOwner }}</td>
-                <td>{{ cattle.apellido }}</td>
-                <td>{{ cattle.correo }}</td>
-                <td>{{ cattle.contacto }}</td>
-                <td>
-                  <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(cattle.idCattle)">Detalle</button>
-                </td>
+                  <th scope="row">{{ cattle.idCattle }}</th>
+                  <td>{{ cattle.nombre }}</td>
+                  <td>{{ cattle.fechaNacimiento }}</td>
+                  <td>{{ cattle.nombreOwner }}</td>
+                  <td>{{ cattle.apellido }}</td>
+                  <td>{{ cattle.correo }}</td>
+                  <td>{{ cattle.contacto }}</td>
+                  <td>
+                    <img src="../../../../assets/icons/detalle.png" alt="Detalle" class="icon mx-1" (click)="navegate(cattle.idCattle)">
+                  </td> 
                 </tr>
             }
         </tbody>

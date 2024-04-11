@@ -16,7 +16,7 @@ export interface IResumeCattle {
     nombre:          string;
     estado:          number;
     edad:            string;
-    nombreOwner:     string;
+    owner:     string;
 }
 
 export interface ISoldCattle {

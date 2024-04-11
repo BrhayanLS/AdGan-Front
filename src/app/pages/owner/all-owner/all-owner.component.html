@@ -3,8 +3,9 @@
 }
 
 @if (!loading) {
-    <section class="section">
+    <section class="section-table">
         <div class="container">
+          <h3>Listado de todos los ganaderos</h3>
             <table class="table table-hover">
                 <thead>
                   <tr>
@@ -34,11 +35,11 @@
                                 {{ role.name }}
                             }
                         </td>
-                        <td>
-                            <button type="button" class="btn btn-outline-info mx-1" (click)="navegate(owner.idOwner)">Detalle</button>
-                            <button type="button" class="btn btn-outline-primary mx-1" (click)="loadOwner(owner.idOwner)" (click)="getRoles()" data-bs-toggle="modal" data-bs-target="#updateOwnerModal">Actualizar</button>
-                            <button type="button" class="btn btn-outline-danger mx-1" (click)="deleteOwner(owner.idOwner)">Eliminar</button>
-                          </td>
+                         <td>
+                           <img src="../../../../assets/icons/detalle.png" alt="Detalle" class="icon mx-1" (click)="navegate(owner.idOwner)">
+                           <img src="../../../../assets/icons/editar.png" alt="Actualizar" class="icon mx-1" (click)="loadOwner(owner.idOwner)" (click)="getRoles()" data-bs-toggle="modal" data-bs-target="#updateOwnerModal">
+                            <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="deleteOwner(owner.idOwner)">
+                          </td>                        
                         </tr>
                     }
                 </tbody>

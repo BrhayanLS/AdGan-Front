@@ -16,6 +16,7 @@ export interface Role {
 }
 
 export interface IOwner {
+    idOwner?:  number;
     apellido: string;
     contacto: string;
     correo:   string;

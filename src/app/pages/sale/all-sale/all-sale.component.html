@@ -1,35 +1,192 @@
 @if (loading) {
-    <app-loading/>
+<app-loading />
 }
 
 @if (!loading) {
-    <section class="section">
-        <div class="container">
-            <table class="table table-hover">
-                <thead>
-                  <tr>
+<section class="section-table">
+    <div class="container">
+        <div class="d-flex justify-content-between my-1">
+      <h3>Listado de todas las ventas</h3>
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar venta</button>
+    </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Fecha Venta</th>
                     <th scope="col">Precio/Kilo</th>
                     <th scope="col">Valor Camion</th>
                     <th scope="col">Valor Bascula</th>
-                  </tr>
-                </thead>
-               <tbody>
-                   @for (sale of listSale; track $index) {
-                       <tr>
-                        <th scope="row">{{ sale.idSale }}</th>
-                        <td>@if (sale.estado) {Disponible} @else {No Disponible}</td>
-                        <td>{{ sale.fechaVenta }}</td>
-                        <td>{{ sale.precioKilo | currency: '' : 'symbol' : '3.0-0' }}</td>
-                        <td>{{ sale.valorCamion | currency: '' : 'symbol' : '3.0-0' }}</td>
-                        <td>{{ sale.valorBascula | currency: '' : 'symbol' : '3.0-0' }}</td>
-                        <td><button type="button" class="btn btn-outline-primary" (click)="navegate(sale.idSale)">Details</button></td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </section>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (sale of listSale; track $index) {
+                <tr>
+                    <th scope="row">{{ sale.idSale }}</th>
+                    <td>@if (sale.estado) {Disponible} @else {No Disponible}</td>
+                    <td>{{ sale.fechaVenta }}</td>
+                    <td>{{ sale.precioKilo | currency: '' : 'symbol' : '3.0-0' }}</td>
+                    <td>{{ sale.valorCamion | currency: '' : 'symbol' : '3.0-0' }}</td>
+                    <td>{{ sale.valorBascula | currency: '' : 'symbol' : '3.0-0' }}</td>
+                    <td>
+                        <img src="../../../../assets/icons/detalle.png" alt="Detalle" class="icon mx-1" (click)="navegate(sale.idSale)">
+                        <img src="../../../../assets/icons/editar.png" alt="Actualizar" class="icon mx-1" (click)="loadSale(sale.idSale)" data-bs-toggle="modal" data-bs-target="#updateSaleModal">
+                        <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="deleteSale(sale.idSale)">
+                    </td> 
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
 }
+
+<!--Modal para agregar-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir nueva venta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="saleForm" class="row g-3 needs-Validation" novalidate (submit)="enviar($event)">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Andres" formControlName="fecha"
+                            [ngClass]="{'is-invalid' : hasErrors('fecha', 'required') || hasErrors('fecha','minlength')}">
+                        @if (hasErrors('fecha', 'required')) { <span class="text-danger">Complete el campo</span> }
+                        @if (hasErrors('fecha', 'minlength')) { <span class="text-danger">La fecha debe tener al menos 10 caracteres</span> }
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Precio kilo</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput2" placeholder="7800" formControlName="precioKilo"
+                            [ngClass]="{'is-invalid' : hasErrors('precioKilo', 'required') || hasErrors('precioKilo','minlength')}">
+                        @if (hasErrors('precioKilo', 'required')) { <span class="text-danger">Complete el campo</span> }
+                        @if (hasErrors('precioKilo', 'minlength')) { <span class="text-danger">El precio minimo puede ser 1000</span> }
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput3" class="form-label">Valor camion</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput3" placeholder="75000" formControlName="camion"
+                            [ngClass]="{'is-invalid' : hasErrors('camion', 'required') || hasErrors('camion','minlength')}">
+                        @if (hasErrors('camion', 'required')) { <span class="text-danger">Complete el campo</span> }
+                        @if (hasErrors('camion', 'minlength')) { <span class="text-danger">El precio minimo puede ser 1000</span> }
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput4" class="form-label">Valor bascula</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput4" placeholder="65000" formControlName="bascula"
+                            [ngClass]="{'is-invalid' : hasErrors('bascula', 'required') || hasErrors('bascula','minlength')}">
+                        @if (hasErrors('bascula', 'required')) { <span class="text-danger">Complete el campo</span> }
+                        @if (hasErrors('bascula', 'minlength')) { <span class="text-danger">El precio minimo puede ser 1000</span> }
+                    </div>
+                    Informacion del ganado:
+                    <div formArrayName="cattles" class="my-1">
+                        @for (cattle of cattles.controls; track cattle; let i = $index) {
+                        <div class="row my-1" [formGroupName]="i">
+                            <div class="col-5">
+                                <label for="exampleFormControlInput5" class="form-label">Id Ganado</label>
+                                <input type="number" class="form-control" id="exampleFormControlInput5" placeholder="75000" formControlName="idCattle"
+                                    [ngClass]="{'is-invalid' : hasErrors('idCattle', 'required') || hasErrors('idCattle','minlength')}">
+                                @if (hasErrors('idCattle', 'required')) { <span class="text-danger">Complete el campo</span> }
+                                @if (hasErrors('idCattle', 'minlength')) { <span class="text-danger">El Id debe ser mayor a 1</span> }
+                            </div>
+                            <div class="col-5">
+                                <label for="exampleFormControlInput6" class="form-label">Peso</label>
+                                <input type="number" class="form-control" id="exampleFormControlInput6" placeholder="75000" formControlName="peso"
+                                    [ngClass]="{'is-invalid' : hasErrors('peso', 'required') || hasErrors('peso','minlength')}">
+                                @if (hasErrors('peso', 'required')) { <span class="text-danger">Complete el campo</span> }
+                                @if (hasErrors('peso', 'minlength')) { <span class="text-danger">El peso minimo debe ser 100</span> }
+                            </div>
+                            <div class="col-2">
+                                <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="removeCattle(i)">
+                            </div>
+                        </div>
+                        }
+                        <div class="col-6">
+                            <img src="../../../../assets/icons/agregar.png" alt="Agregar" class="icon mx-1" (click)="addCattle()">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-outline-primary" type="submit">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal para actualizar-->
+<div class="modal fade" id="updateSaleModal" tabindex="-1" aria-labelledby="updateSaleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="updateSaleModalLabel">Actualizar datos del ganadero</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="saleUpdateForm" class="row g-3 needs-Validation" novalidate (submit)="enviarUpdate($event)">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Fecha</label>
+                    <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="fechaVenta"
+                        [ngClass]="{'is-invalid' : hasErrors('fechaVenta', 'required') || hasErrors('fechaVenta','minlength')}">
+                    @if (hasErrors('fechaVenta', 'required')) { <span class="text-danger">Complete el campo</span> }
+                    @if (hasErrors('fechaVenta', 'minlength')) { <span class="text-danger">La fecha debe tener al menos 10 caracteres</span> }
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput2" class="form-label">Precio kilo</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput2" formControlName="precioKilo"
+                        [ngClass]="{'is-invalid' : hasErrors('precioKilo', 'required') || hasErrors('precioKilo','minlength')}">
+                    @if (hasErrors('precioKilo', 'required')) { <span class="text-danger">Complete el campo</span> }
+                    @if (hasErrors('precioKilo', 'minlength')) { <span class="text-danger">El precio minimo puede ser 1000</span> }
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput3" class="form-label">Valor camion</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput3" formControlName="valorCamion"
+                        [ngClass]="{'is-invalid' : hasErrors('valorCamion', 'required') || hasErrors('valorCamion','minlength')}">
+                    @if (hasErrors('valorCamion', 'required')) { <span class="text-danger">Complete el campo</span> }
+                    @if (hasErrors('valorCamion', 'minlength')) { <span class="text-danger">El precio minimo puede ser 1000</span> }
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput4" class="form-label">Valor bascula</label>
+                    <input type="number" class="form-control" id="exampleFormControlInput4" formControlName="valorBascula"
+                        [ngClass]="{'is-invalid' : hasErrors('valorBascula', 'required') || hasErrors('valorBascula','minlength')}">
+                    @if (hasErrors('valorBascula', 'required')) { <span class="text-danger">Complete el campo</span> }
+                    @if (hasErrors('valorBascula', 'minlength')) { <span class="text-danger">El precio minimo puede ser 1000</span> }
+                </div>
+                Informacion del ganado:
+                <div formArrayName="saleCattles" class="my-1">
+                    @for (cattle of saleCattles.controls; track cattle; let i = $index) {
+                    <div class="row my-1" [formGroupName]="i">
+                        <div class="col-5">
+                            <label for="exampleFormControlInput5" class="form-label">Id Ganado</label>
+                            <input type="number" class="form-control" id="exampleFormControlInput5" formControlName="cattleId"
+                                [ngClass]="{'is-invalid' : hasErrors('cattleId', 'required') || hasErrors('cattleId','minlength')}">
+                            @if (hasErrors('cattleId', 'required')) { <span class="text-danger">Complete el campo</span> }
+                            @if (hasErrors('cattleId', 'minlength')) { <span class="text-danger">El Id debe ser mayor a 1</span> }
+                        </div>
+                        <div class="col-5">
+                            <label for="exampleFormControlInput6" class="form-label">Peso</label>
+                            <input type="number" class="form-control" id="exampleFormControlInput6" formControlName="peso"
+                                [ngClass]="{'is-invalid' : hasErrors('peso', 'required') || hasErrors('peso','minlength')}">
+                            @if (hasErrors('peso', 'required')) { <span class="text-danger">Complete el campo</span> }
+                            @if (hasErrors('peso', 'minlength')) { <span class="text-danger">El peso minimo debe ser 100</span> }
+                        </div>
+                        <div class="col-2">
+                            <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="removeCattleU(i)">
+                        </div>
+                    </div>
+                    }
+                    <div class="col-6">
+                        <img src="../../../../assets/icons/agregar.png" alt="Agregar" class="icon mx-1" (click)="addCattleU()">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-outline-primary" type="submit">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

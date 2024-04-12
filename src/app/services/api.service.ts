@@ -54,8 +54,30 @@ export class ApiService {
       }
     });
   }
-  
 
+  deleteCattle(id: number): void {
+    this._http.delete(`${this.baseUrl}cattle/delete/${id}`).subscribe({
+      next: (response) => {
+        console.log("Registro eliminado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al eliminar el registro");
+      }
+    });
+  }
+  
+  updateCattle(cattle: ICattle): void {
+    this._http.put<ICattle>(`${this.baseUrl}cattle/update`, cattle).subscribe({
+      next: (response) => {
+        console.log("Registro actualizado");
+      },
+      error: (error) => {
+        console.log("Error al actualizar");
+      }
+    });
+  }
+
+/*-----------------------------------------------------------------------------------------------*/
   //Owners
 
   getAllOwners(): Observable<IAllOwner[]> {
@@ -80,7 +102,30 @@ export class ApiService {
       }
     });
   }
+  
+  deleteOwner(id: number): void {
+    this._http.delete(`${this.baseUrl}owner/${id}`).subscribe({
+      next: (response) => {
+        console.log("Registro eliminado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al eliminar el registro");
+      }
+    });
+  }
 
+  updateOwner(owner: IOwner): void {
+    this._http.put(`${this.baseUrl}owner`, owner).subscribe({
+      next: (response) => {
+        console.log("Registro actualizado");
+      },
+      error: (error) => {
+        console.log("Error al actualizar");
+      }
+    });
+  }
+
+  /*---------------------------------------------------------------------------------------------*/
   //Sales
 
   getAllSales(): Observable<IAllSale[]> {
@@ -104,5 +149,27 @@ export class ApiService {
         console.log("Error al crear el registro");
       }
     })
+  }
+
+  deleteSale(id: number): void {
+    this._http.delete(`${this.baseUrl}sale/${id}`).subscribe({
+      next: (response) => {
+        console.log("Registro eliminado correctamente");
+      },
+      error: (error) => {
+        console.log("Error al eliminar el registro");
+      }
+    });
+  }
+
+  updateSale(sale: ISale): void {
+    this._http.put(`${this.baseUrl}sale`, sale).subscribe({
+      next: (response) => {
+        console.log("Registro actualizado");
+      },
+      error: (error) => {
+        console.log("Error al actualizar");
+      }
+    });
   }
 }

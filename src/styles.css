@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+/*----------------------------------Estilos de las tablas--------------------------------*/
+
+.section-table {
+    font-family: poppins;
+    background: rgb(53,104,45);
+    background: linear-gradient(90deg, rgba(53,104,45,1) 50%, rgba(38,69,34,1) 100%);
+    padding: 10px 0px;
+    min-height: 100vh;
+  }
+
+  .section-table h3 {
+    color: #c3fcb6;
+  }
+  
+  .section-table .table {
+    text-align: center;
+    --bs-table-color: #fff;
+    --bs-table-bg: transparent;
+    --bs-table-hover-color: #31d413;
+    border-style: dashed;
+  }
+  
+  .section-table .table > tr {
+    border: 1px dashed #f2feef;
+  }
+
+  /*--------------------------------------Estilo de los iconos--------------------------------*/
+
+  .icon {
+    width: 1.7em;
+    height: 1.7em;
+    cursor: pointer;
+  }
+  
+  .icon:hover {
+    opacity: 0.8;
+    border: 1px solid #31d413;
+    border-radius: 10%;
+  }
+  
+/*-------------------------------------Estilos botones----------------------------------------*/
+
+.btn {
+    font-size: 1.1em;
+}
+
+/*--------------------------------------Estilo modales-----------------------------------------*/
+
+.modal-content {
+    --bs-modal-bg: #f2feef;
+}
+
+.modal-content h1, .modal-content label {
+    color: #17590e;
+    font-weight: bold;
+}
+
+.modal-content input {
+    border-color: #1d6c0f;
+}
+
+.modal-content input:hover {
+    border: 2px solid #17590e;
+}
+
+/*------------------------------------------Estilos detail-----------------------------------------*/
+
+.container-detail {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    background: #e0ffd9;
+}
+
+.card-text {
+    margin: 0;
+}
+  
+
+
+  /*--deep-fir-50: #f2feef;
+--deep-fir-100: #e0ffd9;
+--deep-fir-200: #c3fcb6;
+--deep-fir-300: #92f87d;
+--deep-fir-400: #59eb3d;
+--deep-fir-500: #31d413;
+--deep-fir-600: #23b009;
+--deep-fir-700: #1e8a0b;
+--deep-fir-800: #1d6c0f;
+--deep-fir-900: #17590e;
+--deep-fir-950: #052501;*/

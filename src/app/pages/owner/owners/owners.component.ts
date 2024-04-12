@@ -25,55 +25,118 @@ export class OwnersComponent implements OnInit {
   private _router = inject(Router);
 
   ngOnInit(): void {
-      this._apiService.getOwners().subscribe((data: IAllOwner[]) => {
-        this.listOwners = data;
-        this.loading = false;
-      });
-}
+    this._apiService.getOwners().subscribe((data: IAllOwner[]) => {
+      this.listOwners = data;
+      this.loading = false;
+    });
+  }
 
-getRoles() {
-  this._apiService.getRoles().subscribe((data: string[]) => {
-    this.enumRoles = data.map((rol) => ({
-      roles: rol
-    }))
-  });
-}
+  getRoles() {
+    this._apiService.getRoles().subscribe((data: string[]) => {
+      this.enumRoles = data.map((rol) => ({ roles: rol }));
+    });
+  }
 
   navegate(id: number): void {
-    this._router.navigate(['owner',id]);
+    this._router.navigate(['owner', id]);
+  }
+
+  deleteOwner(id: number): void {
+    if (confirm('¿Estás seguro del eliminar a este dueño?')) {
+      this._apiService.deleteOwner(id);
+    }
   }
 
   ownerForm!: FormGroup
+  ownerUpdateForm!: FormGroup;
 
-constructor(private formBuilder: FormBuilder) {
-  this.ownerForm = this.formBuilder.group({
-    apellido: ['', [Validators.required, Validators.minLength(3)]],
-    contacto: ['', [Validators.required, Validators.minLength(3)]],
-    correo: ['', [Validators.required, Validators.minLength(3), Validators.email]],
-    username: ['', [Validators.required, Validators.minLength(3)]],
-    nombre: ['', [Validators.required, Validators.minLength(3)]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
-    role: ['', [Validators.required]]
-  })
-}
+  constructor(private formBuilder: FormBuilder) {
+    this.ownerForm = this.createOwnerForm();
+    this.ownerUpdateForm = this.createOwnerUpdateForm();
+  }
 
-enviar(event: Event) {
-  event.preventDefault();
+  createOwnerForm(): FormGroup {
+    return this.formBuilder.group({
+      apellido: ['', [Validators.required, Validators.minLength(3)]],
+      contacto: ['', [Validators.required, Validators.minLength(3)]],
+      correo: ['', [Validators.required, Validators.minLength(3), Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      role: ['', [Validators.required]]
+    });
+  }
 
-  const owner: IOwner = {
-    apellido: this.ownerForm.value.apellido,
-    contacto: this.ownerForm.value.contacto,
-    correo: this.ownerForm.value.correo,
-    username: this.ownerForm.value.username,
-    nombre: this.ownerForm.value.nombre,
-    password: this.ownerForm.value.password,
-    roles: [this.ownerForm.value.role]
+  createOwnerUpdateForm(): FormGroup {
+    return this.formBuilder.group({
+      apellido: ['', [Validators.required, Validators.minLength(3)]],
+      contacto: ['', [Validators.required, Validators.minLength(3)]],
+      correo: ['', [Validators.required, Validators.minLength(3), Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      roles: ['', [Validators.required]]
+    });
+  }
+
+
+  enviar(event: Event) {
+    event.preventDefault();
+
+    const owner: IOwner = {
+      apellido: this.ownerForm.value.apellido,
+      contacto: this.ownerForm.value.contacto,
+      correo: this.ownerForm.value.correo,
+      username: this.ownerForm.value.username,
+      nombre: this.ownerForm.value.nombre,
+      password: this.ownerForm.value.password,
+      roles: [this.ownerForm.value.role]
+    };
+    this._apiService.addOwner(owner);
+  }
+
+  /*--------------------------------------------------------------------------------------------------*/
+
+  ownerUpdate: IOwner = {
+    idOwner: undefined,
+    apellido: '',
+    contacto: '',
+    correo: '',
+    username: '',
+    nombre: '',
+    password: '',
+    roles: []
   };
-  console.log(owner);
-  this._apiService.addOwner(owner);
-}
 
-hasErrors(field: string, typeError: string) {
-  return this.ownerForm.get(field)?.hasError(typeError) && this.ownerForm.get(field)?.touched;
-}
+  loadOwner(id: number): void {
+    this._apiService.getOwner(id).subscribe((data: any) => {
+      this.ownerUpdate = data;
+      this.ownerUpdate.password = '';
+      this.ownerUpdateForm.patchValue(this.ownerUpdate);
+    });
+  }
+
+  enviarUpdate(event: Event) {
+    event.preventDefault();
+
+    const owner: IOwner = {
+      idOwner: this.ownerUpdate.idOwner,
+      apellido: this.ownerUpdateForm.value.apellido,
+      contacto: this.ownerUpdateForm.value.contacto,
+      correo: this.ownerUpdateForm.value.correo,
+      username: this.ownerUpdateForm.value.username,
+      nombre: this.ownerUpdateForm.value.nombre,
+      password: this.ownerUpdateForm.value.password,
+      roles: [this.ownerUpdateForm.value.roles],
+    };
+    this._apiService.updateOwner(owner);
+  }
+
+  hasErrors(field: string, typeError: string) {
+    return this.ownerForm.get(field)?.hasError(typeError) && this.ownerForm.get(field)?.touched;
+  }
+
+  hasErrorsU(field: string, typeError: string) {
+    return this.ownerUpdateForm.get(field)?.hasError(typeError) && this.ownerUpdateForm.get(field)?.touched;
+  }
 }

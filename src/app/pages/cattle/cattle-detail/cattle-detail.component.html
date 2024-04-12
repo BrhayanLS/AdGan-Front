@@ -3,12 +3,13 @@
 }
 
 @if (!loading) {
-    <section class="section">
-        <div class="container">
+    <section class="section-table">
+        <div class="container-detail">
         <div class="card" style="width: 18rem;">
+          <img src="../../../../assets/images/ejm-card.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title"><b>Nombre: </b>{{ cattle?.nombre }}</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary"><b>Fecha de nacimiento: </b>{{ cattle?.fechaNacimiento }}</h6>
+              <p class="card-text"><b>Fecha de nacimiento: </b>{{ cattle?.fechaNacimiento }}</p>
               <p class="card-text"><b>Nombre dueño: </b>{{ cattle?.nombreOwner }} {{ cattle?.apellido }}</p>
               <p class="card-text"><b>Correo: </b>{{ cattle?.correo }}</p>
               <p class="card-text"><b>Celular: </b>{{ cattle?.contacto }}</p>

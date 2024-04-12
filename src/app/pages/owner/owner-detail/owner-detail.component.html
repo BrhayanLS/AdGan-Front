@@ -3,17 +3,17 @@
   }
   
   @if (!loading) {
-      <section class="section">
-          <div class="container">
+      <section class="section-table">
+          <div class="container-detail">
           <div class="card">
               <div class="card-body">
                 <h5 class="card-title"><b>Nombre Completo: </b>{{ owner?.nombre }} {{ owner?.apellido }}</h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary">
+                <p class="card-text">
                     @for (owner of owner?.roles; track $index) {
-                        <b>Rol: {{ owner.name }}</b>
+                        <b>Rol: </b>{{ owner.name }}
                     }
-                </h6>
-                <h6 class="card-subtitle mb-2 text-body-secondary"><b>Username: {{ owner?.username }}</b></h6>
+                  </p>
+                <p class="card-text"><b>Username:</b> {{ owner?.username }}</p>
                 <p class="card-text"><b>Estado: </b>@if (owner?.estado) {Activo} @else {Inactivo}</p>
                 <p class="card-text"><b>Correo: </b>{{ owner?.correo }}</p>
                 <p class="card-text"><b>Celular: </b>{{ owner?.contacto }}</p>

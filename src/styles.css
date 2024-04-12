@@ -39,6 +39,25 @@
 .btn {
     font-size: 1.1em;
 }
+
+/*--------------------------------------------------------------------------------------------*/
+
+.modal-content {
+    --bs-modal-bg: #f2feef;
+}
+
+.modal-content h1, .modal-content label {
+    color: #17590e;
+    font-weight: bold;
+}
+
+.modal-content input {
+    border-color: #1d6c0f;
+}
+
+.modal-content input:hover {
+    border: 2px solid #17590e;
+}
   
 
 

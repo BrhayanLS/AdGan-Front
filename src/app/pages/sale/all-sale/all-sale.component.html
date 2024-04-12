@@ -100,16 +100,16 @@
                                 @if (hasErrors('peso', 'minlength')) { <span class="text-danger">El peso minimo debe ser 100</span> }
                             </div>
                             <div class="col-2">
-                                <button class="btn btn-primary" (click)="removeCattle(i)">Eliminar</button>
+                                <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="removeCattle(i)">
                             </div>
                         </div>
                         }
                         <div class="col-6">
-                            <button class="btn btn-primary" type="button" (click)="addCattle()">Añadir</button>
+                            <img src="../../../../assets/icons/agregar.png" alt="Agregar" class="icon mx-1" (click)="addCattle()">
                         </div>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                        <button class="btn btn-outline-primary" type="submit">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -174,16 +174,16 @@
                             @if (hasErrors('peso', 'minlength')) { <span class="text-danger">El peso minimo debe ser 100</span> }
                         </div>
                         <div class="col-2">
-                            <button class="btn btn-primary" (click)="removeCattleU(i)">Eliminar</button>
+                            <img src="../../../../assets/icons/eliminar.png" alt="Eliminar" class="icon mx-1" (click)="removeCattleU(i)">
                         </div>
                     </div>
                     }
                     <div class="col-6">
-                        <button class="btn btn-primary" type="button" (click)="addCattleU()">Añadir</button>
+                        <img src="../../../../assets/icons/agregar.png" alt="Agregar" class="icon mx-1" (click)="addCattleU()">
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button class="btn btn-outline-primary" type="submit">Actualizar</button>
                 </div>
             </form>
         </div>
